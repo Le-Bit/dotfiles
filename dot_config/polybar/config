@@ -1,0 +1,273 @@
+[colors]
+red = #fb4934
+green = #b8bb26
+yellow = #fabd2f
+blue = #83a598
+purple = #d3869b
+aqua = #8ec07c
+orange = #fe8019
+gray = #928374
+bg0 = #32302f
+bg1 = #3c3836
+bg2 = #504945
+bg3 = #665c54
+bg4 = #7c6f64
+fg0 = #fbf1c7
+fg1 = #ebdbb2
+fg2 = #d5c4a1
+fg3 = #bdae93
+fg4 = #a89984
+
+[bar/bitbar]
+monitor =
+dpi = 120
+
+width = 100%
+height = 1.75%
+
+background = ${colors.bg0}
+foreground = ${colors.fg1}
+
+border-size = 0
+border-bottom-size = 0
+
+font-0 = FiraCode Nerd Font Mono;3
+font-1 = IBM Plex Sans;3
+font-2 = FontAwesome5FreeSolid:pixelsize=12;1
+
+modules-left = i3 title
+modules-right = battery yay memory cpu pulseaudio wlan date 
+
+tray-position = none
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+bottom = true
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+label-mode-padding = 1
+label-mode-foreground = ${colors.fg1}
+label-mode-background = ${colors.bg0}
+
+label-focused = %index%
+label-focused-foreground = ${colors.bg0}
+label-focused-background = ${colors.fg4}
+label-focused-padding = 1
+
+label-unfocused = %index%
+label-unfocused-foreground = ${colors.fg3}
+label-unfocused-background = ${colors.bg2}
+label-unfocused-padding = 1
+
+label-urgent = %index%
+label-urgent-foreground = ${colors.fg1}
+label-urgent-background = ${colors.red}
+label-urgent-padding = 1
+
+[module/title]
+type = internal/xwindow
+format-foreground = ${colors.bg0}
+format-background = ${colors.fg4}
+format-padding = 1
+label-maxlen = 32
+label-empty = Desktop
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-padding = 1
+format-foreground = ${colors.fg2}
+format-background = ${colors.bg1}
+label = %percentage%% cpu
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-padding = 1
+format-foreground = ${colors.fg2}
+format-background = ${colors.bg1}
+label = %percentage_used%% mem
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3.0
+format-connected-padding = 1
+format-connected-foreground = ${colors.fg2}
+format-connected-background = ${colors.bg3}
+format-connected = <label-connected>
+label-connected = %essid%
+format-disconnected-padding = 1
+label-disconnected-foreground = ${colors.fg2}
+format-disconnected-background = ${colors.bg3}
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+
+[module/date]
+type = internal/date
+interval = 5
+date = %D
+time = %I:%M %p
+format-padding = 1
+format-background = ${colors.fg4}
+format-foreground = ${colors.bg0}
+label = %time% %date%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+label-volume = %percentage%% vol
+
+format-volume = <label-volume>
+format-volume-padding = 1
+format-volume-foreground = ${colors.fg2}
+format-volume-background = ${colors.bg2}
+
+label-muted = 
+label-muted-foreground = ${colors.gray}
+
+[module/temperature]
+type = internal/temperature
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon1/temp1_input
+warn-temperature = 80
+
+label = %temperature-c% temp
+label-warm = %temparature-c% temp
+
+format = <label>
+format-padding = 1
+format-foreground = ${colors.fg2}
+format-background = ${colors.bg1}
+
+format-warn = <label-warn>
+format-warn-padding = 1
+format-warn-background = ${colors.bg1}
+
+[module/battery]
+format-padding = 1
+type = internal/battery
+
+; This is useful in case the battery never reports 100% charge
+full-at = 99
+
+; Use the following command to list batteries and adapters:
+; $ ls -1 /sys/class/power_supply/
+battery = BAT0
+adapter = ADP1
+
+; If an inotify event haven't been reported in this many
+; seconds, manually poll for new values.
+;
+; Needed as a fallback for systems that don't report events
+; on sysfs/procfs.
+;
+; Disable polling by setting the interval to 0.
+;
+; Default: 5
+poll-interval = 5
+; see "man date" for details on how to format the time string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+; Default: %H:%M:%S
+time-format = %H:%M
+
+; Available tags:
+;   <label-charging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-charging>
+format-charging = <animation-charging> <label-charging>
+
+; Available tags:
+;   <label-discharging> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+;   <animation-discharging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+; Available tags:
+;   <label-full> (default)
+;   <bar-capacity>
+;   <ramp-capacity>
+format-full = <ramp-capacity> <label-full>
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current charge rate in watts)
+label-charging = %percentage%% -> %time% 
+
+; Available tokens:
+;   %percentage% (default)
+;   %time%
+;   %consumption% (shows current discharge rate in watts)
+label-discharging = Discharging %percentage%% -- %time% left
+
+; Available tokens:
+;   %percentage% (default)
+label-full = Fully charged
+
+; Only applies if <ramp-capacity> is used
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+; Only applies if <bar-capacity> is used
+bar-capacity-width = 10
+
+; Only applies if <animation-charging> is used
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+; Framerate in milliseconds
+animation-charging-framerate = 750
+
+; Only applies if <animation-discharging> is used
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+; Framerate in milliseconds
+animation-discharging-framerate = 500
+
+[module/polypomo]
+type = custom/script
+
+exec = ~/.config/polybar/polypomo.py --worktime 3300 --breaktime 300
+tail = true
+
+label = %output%
+label-foreground = ${colors.fg2}
+label-background = ${colors.bg1}
+label-padding = 1
+click-left = ~/.config/polybar/polypomo.py toggle
+click-right = ~/.config/polybar/polypomo.py end
+click-middle = ~/.config/polybar/polypomo.py lock
+scroll-up = ~/.config/polybar/polypomo.py time +60
+scroll-down = ~/.config/polybar/polypomo.py time -60
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+[module/yay]
+format-padding = 1
+interval = 600
+type = custom/script
+exec = "checkupdates | wc -l"
+tail = true
+format = <label>
+format-prefix = " "
