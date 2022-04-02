@@ -1,0 +1,23 @@
+vim.o.number = true
+vim.o.showmatch = true
+vim.o.showtabline=2
+vim.o.showmatch = true
+vim.o.hlsearch = false
+vim.o.cursorline = true
+vim.o.softtabstop=2
+vim.o.tabstop=2
+vim.o.shiftwidth=2
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.cindent = true
+vim.o.laststatus=2
+vim.o.scrolloff=999
+vim.o.ttimeoutlen=0
+vim.o.wildmenu = true
+vim.o.colorcolumn="80"
+vim.o.splitright = true
+vim.o.splitbelow = true
+vim.o.termguicolors = true
+vim.o.mouse = "a"
+
+vim.g.dashboard_default_executive = 'telescope'
