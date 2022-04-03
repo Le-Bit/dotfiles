@@ -10,7 +10,7 @@ vim.o.shiftwidth=2
 vim.o.expandtab = true
 vim.o.smartindent = true
 vim.o.cindent = true
-vim.o.laststatus=2
+vim.o.laststatus=3
 vim.o.scrolloff=999
 vim.o.ttimeoutlen=0
 vim.o.wildmenu = true
@@ -24,5 +24,6 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 1
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
+
 
 vim.g.dashboard_default_executive = 'telescope'
