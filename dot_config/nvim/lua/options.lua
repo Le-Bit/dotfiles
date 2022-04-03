@@ -23,5 +23,6 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 1
 vim.o.mouse = "a"
+vim.o.clipboard = "unnamedplus"
 
 vim.g.dashboard_default_executive = 'telescope'
