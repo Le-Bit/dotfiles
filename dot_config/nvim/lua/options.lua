@@ -18,6 +18,10 @@ vim.o.colorcolumn="80"
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.termguicolors = true
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = true
+vim.opt.foldlevel = 1
 vim.o.mouse = "a"
 
 vim.g.dashboard_default_executive = 'telescope'
