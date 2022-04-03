@@ -20,7 +20,7 @@ fg4 = #a89984
 
 [bar/bitbar]
 monitor =
-dpi = 120
+dpi = 100
 
 width = 100%
 height = 1.75%
@@ -28,8 +28,8 @@ height = 1.75%
 background = ${colors.bg0}
 foreground = ${colors.fg1}
 
-border-size = 0
-border-bottom-size = 0
+border-size = 5
+border-bottom-size = 10
 
 font-0 = FiraCode Nerd Font Mono;3
 font-1 = IBM Plex Sans;3
@@ -260,8 +260,8 @@ screenchange-reload = true
 pseudo-transparency = true
 
 [global/wm]
-margin-top = 0
-margin-bottom = 0
+margin-top = 5
+margin-bottom = 5
 
 [module/yay]
 format-padding = 1
@@ -270,4 +270,4 @@ type = custom/script
 exec = "checkupdates | wc -l"
 tail = true
 format = <label>
-format-prefix = " "
+format-prefix = " "
