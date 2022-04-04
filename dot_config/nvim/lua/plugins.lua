@@ -45,7 +45,7 @@ return require('packer').startup(function()
   }
 
   use 'tjdevries/colorbuddy.nvim'
-  use { 
+  use {
     'TimUntersberger/neogit',
     requires = { 'nvim-lua/plenary.nvim', 'sindrets/diffview.nvim' }
   }
@@ -76,13 +76,6 @@ return require('packer').startup(function()
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
 
-  -- use 'hrsh7th/cmp-vsnip'
-  -- use 'hrsh7th/vim-vsnip'
-  -- use 'hrsh7th/vim-vsnip-integ' 
-  --
-  -- use 'softchris/ts-snippets' 
-  -- use 'stevearc/vim-vsnip-snippets'
-  -- use 'xabikos/vscode-javascript'
   use 'nvim-telescope/telescope-file-browser.nvim'
 
   use {
@@ -90,29 +83,57 @@ return require('packer').startup(function()
     config = function() require("which-key").setup {} end
   }
   use {
-  "rcarriga/vim-ultest",
-  requires = { "vim-test/vim-test" },
-  opt = true,
-  keys = { "<leader>t" },
-  cmd = {
-    "TestNearest",
-    "TestFile",
-    "TestSuite",
-    "TestLast",
-    "TestVisit",
-    "Ultest",
-    "UltestNearest",
-    "UltestDebug",
-    "UltestLast",
-    "UltestSummary",
-  },
-  module = "ultest",
-  run = ":UpdateRemotePlugins",
-  config = function()
-    require("config.test").setup()
-  end,
-}
+    "rcarriga/vim-ultest",
+    requires = { "vim-test/vim-test" },
+    opt = true,
+    keys = { "<leader>t" },
+    cmd = {
+      "TestNearest",
+      "TestFile",
+      "TestSuite",
+      "TestLast",
+      "TestVisit",
+      "Ultest",
+      "UltestNearest",
+      "UltestDebug",
+      "UltestLast",
+      "UltestSummary",
+    },
+    module = "ultest",
+    run = ":UpdateRemotePlugins",
+    config = function()
+      require("config.test").setup()
+    end,
+  }
 
-use { 'puremourning/vimspector' }
+  use { 'puremourning/vimspector' }
+
+
+  use {
+    "mfussenegger/nvim-dap",
+    opt = true,
+    -- event = "BufReadPre",
+    keys = { [[<leader>d]] },
+    module = { "dap" },
+    wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "which-key.nvim" },
+    requires = {
+      "Pocco81/DAPInstall.nvim",
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "mfussenegger/nvim-dap-python",
+      "nvim-telescope/telescope-dap.nvim",
+      { "leoluz/nvim-dap-go", module = "dap-go" },
+      { "jbyuki/one-small-step-for-vimkind", module = "osv" },
+    },
+    config = function()
+      require("config.dap").setup()
+    end,
+  }
+
+  use 'David-Kunz/jester'
+
+  use { 'williamboman/nvim-lsp-installer'}
+  use { "stevearc/dressing.nvim" }
+  use {'jose-elias-alvarez/typescript.nvim'}
 
 end)

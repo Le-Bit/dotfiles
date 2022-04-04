@@ -1,0 +1,8 @@
+require('config.treesitter')
+require('config.gitsigns')
+require('config.neogit')
+require('config.luasnip')
+require('config.cmp')
+require('config.null_ls')
+require('config.lsp_installer')
+--require('config.nvimtree')
