@@ -1,5 +1,4 @@
-function()
-  return {
+require'nvim-tree'.setup {
   idisable_netrw       = true,
   hijack_netrw        = true,
   open_on_setup       = false,
@@ -13,7 +12,7 @@ function()
     auto_open = true,
   },
   diagnostics = {
-    enable = false,
+    enable = true,
     icons = {
       hint = "",
       info = "",
@@ -46,4 +45,3 @@ function()
     }
   }
 }
-end

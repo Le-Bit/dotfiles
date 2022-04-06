@@ -42,6 +42,7 @@ wk.register({
     v = { "<cmd>TestVisit<cr>", "Visit" },
   },
   rn = { "<cmd>LspRename<cr>", "Rename" },
+  e = {"<cmd>NvimTreeToggle<cr>", "Tree"},
   v = {
     name = "toggle",
     v = { function() vim.o.relativenumber = not vim.o.relativenumber end, "Relative Number" },

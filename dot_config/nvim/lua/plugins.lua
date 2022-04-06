@@ -37,7 +37,7 @@ return require('packer').startup(function()
   use 'hrsh7th/cmp-cmdline'
 
   use "jose-elias-alvarez/null-ls.nvim"
-  use "Le-Bit/nvim-lsp-ts-utils"
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -135,5 +135,14 @@ return require('packer').startup(function()
   use { 'williamboman/nvim-lsp-installer'}
   use { "stevearc/dressing.nvim" }
   use {'jose-elias-alvarez/typescript.nvim'}
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icon
+    },
+    config = function() require'nvim-tree'.setup {} end
+}
+  use 'ggandor/lightspeed.nvim'
 
 end)
