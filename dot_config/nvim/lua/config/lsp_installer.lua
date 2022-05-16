@@ -7,8 +7,6 @@ lsp_installer.on_server_ready(function(server)
       local lspconfig = require("lspconfig")
       lspconfig.tsserver.setup({
         on_attach = function(client, bufnr)
-          client.resolved_capabilities.document_formatting = false
-          client.resolved_capabilities.document_range_formatting = false
           local ts_utils = require("nvim-lsp-ts-utils")
           ts_utils.setup({
             eslint_bin = "eslint_d",
@@ -17,6 +15,8 @@ lsp_installer.on_server_ready(function(server)
             enable_formatting = true,
             formatter = "prettier",
           })
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
           ts_utils.setup_client(client)
           require('mappings').ts_on_attach(client, bufnr)
           require('mappings').on_attach(client, bufnr)

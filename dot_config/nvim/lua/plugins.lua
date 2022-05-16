@@ -115,18 +115,15 @@ return require('packer').startup(function()
     -- event = "BufReadPre",
     keys = { [[<leader>d]] },
     module = { "dap" },
-    wants = { "nvim-dap-virtual-text", "DAPInstall.nvim", "nvim-dap-ui", "which-key.nvim" },
+    wants = { "nvim-dap-virtual-text", "nvim-dap-ui", "which-key.nvim" },
     requires = {
-      "Pocco81/DAPInstall.nvim",
       "theHamsta/nvim-dap-virtual-text",
       "rcarriga/nvim-dap-ui",
-      "mfussenegger/nvim-dap-python",
       "nvim-telescope/telescope-dap.nvim",
-      { "leoluz/nvim-dap-go", module = "dap-go" },
-      { "jbyuki/one-small-step-for-vimkind", module = "osv" },
     },
     config = function()
-      require("config.dap").setup()
+      require('dapui').setup()
+      require("config.dbg").setup()
     end,
   }
 
@@ -145,4 +142,13 @@ return require('packer').startup(function()
 }
   use 'ggandor/lightspeed.nvim'
 
+  use { "ellisonleao/gruvbox.nvim" }
+
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+      {"nvim-lua/plenary.nvim"},
+      {"nvim-treesitter/nvim-treesitter"}
+    }
+  }
 end)

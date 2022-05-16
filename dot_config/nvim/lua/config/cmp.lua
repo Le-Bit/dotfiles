@@ -7,7 +7,7 @@ cmp.setup({
     native_menu = false,
     ghost_text = true,
   },
-  mapping = require('mappings').cmp_mapping,
+  mapping = require('mappings').cmp_mappings,
   sources = cmp.config.sources({
     { name = 'nvim_lua' },
     { name = 'nvim_lsp' },

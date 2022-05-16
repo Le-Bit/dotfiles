@@ -19,6 +19,29 @@ wk.register({
     t = {"<cmd>Telescope treesitter<cr>", "Treesitter" },
     e = {"<cmd>Telescope file_browser<cr>", "Telescope File Browser" },
   },
+    d = {
+      name = "DAP",
+      R = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run to Cursor" },
+      E = { "<cmd>lua require'dapui'.eval(vim.fn.input '[Expression] > ')<cr>", "Evaluate Input" },
+      C = { "<cmd>lua require'dap'.set_breakpoint(vim.fn.input '[Condition] > ')<cr>", "Conditional Breakpoint" },
+      U = { "<cmd>lua require'dapui'.toggle()<cr>", "Toggle UI" },
+      b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
+      c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+      d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
+      e = { "<cmd>lua require'dapui'.eval()<cr>", "Evaluate" },
+      g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
+      h = { "<cmd>lua require'dap.ui.widgets'.hover()<cr>", "Hover Variables" },
+      S = { "<cmd>lua require'dap.ui.widgets'.scopes()<cr>", "Scopes" },
+      i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
+      o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
+      p = { "<cmd>lua require'dap'.pause.toggle()<cr>", "Pause" },
+      q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
+      r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
+      s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
+      t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
+      x = { "<cmd>lua require'dap'.terminate()<cr>", "Terminate" },
+      u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
+    },
   g = {
     name = "lsp",
     n = {"<cmd>TSLspOrganize<cr>", "Organize" },
@@ -90,15 +113,15 @@ M.on_attach = function (client, bufnr)
   vim.cmd("command! LspDiagLine lua vim.diagnostic.open_float()")
   vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
   buf_map(bufnr, "n", "<leader>ld", ":LspDef<CR>")
-  buf_map(bufnr, "n", "rn", ":LspRename<CR>")
+  buf_map(bufnr, "n", "<leader>rn", ":LspRename<CR>")
   buf_map(bufnr, "n", "gy", ":LspTypeDef<CR>")
   buf_map(bufnr, "n", "K", ":LspHover<CR>")
   buf_map(bufnr, "n", "[a", ":LspDiagPrev<CR>")
   buf_map(bufnr, "n", "]a", ":LspDiagNext<CR>")
-  buf_map(bufnr, "n", "la", ":LspCodeAction<CR>")
+  buf_map(bufnr, "n", "ga", ":LspCodeAction<CR>")
   buf_map(bufnr, "n", "<Leader>a", ":LspDiagLine<CR>")
   buf_map(bufnr, "i", "<C-x><C-x>", "<cmd> LspSignatureHelp<CR>")    
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     buf_map(bufnr, "n", "<Leader>ff", ":LspFormatting<CR>")
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   end
@@ -106,8 +129,8 @@ end
 
 local cmp = require'cmp'
 M.cmp_mappings = {
-  ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-  ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+  ['<C-n>'] = cmp.mapping(cmp.mapping.select_next_item(), {'i','c'}),
+  ['<C-p>'] = cmp.mapping(cmp.mapping.select_prev_item(), {'i','c'}),
   -- ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
   -- ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
   -- ['<C-d>'] = cmp.mapping.scroll_docs(-4),

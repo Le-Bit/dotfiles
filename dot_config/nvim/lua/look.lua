@@ -12,6 +12,6 @@ require'lualine'.setup {
  vim.cmd('set t_8f=[38;2;%lu;%lu;%lum')
  vim.cmd('set t_8b=[48;2;%lu;%lu;%lum')
 
-vim.cmd('colorscheme gruvbox-baby')
+vim.cmd('colorscheme gruvbox')
 vim.g.gruvbox_baby_function_style = "NONE"
 vim.g.gruvbox_baby_keyword_style = "NONE"
