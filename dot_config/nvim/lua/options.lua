@@ -25,5 +25,6 @@ vim.opt.foldlevel = 1
 vim.o.mouse = "a"
 vim.o.clipboard = "unnamedplus"
 
+--vim.opt.winbar = "%{%v:lua.require'config.winbar'.statusline()%}"
 
 vim.g.dashboard_default_executive = 'telescope'

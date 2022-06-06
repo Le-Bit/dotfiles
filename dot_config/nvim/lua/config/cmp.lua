@@ -10,6 +10,7 @@ cmp.setup({
   mapping = require('mappings').cmp_mappings,
   sources = cmp.config.sources({
     { name = 'nvim_lua' },
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },

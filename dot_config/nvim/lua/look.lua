@@ -1,9 +1,9 @@
-require'lualine'.setup {
-  options = {fmt = string.lower, theme = 'gruvbox'},
-  sections = {lualine_a = {
-    {'mode', fmt = function(str) return str:sub(1,1) end}},
-    lualine_b = {'branch'}}
-  }
+-- require'lualine'.setup {
+--   options = {fmt = string.lower, theme = 'gruvbox'},
+--   sections = {lualine_a = {
+--     {'mode', fmt = function(str) return str:sub(1,1) end}},
+--     lualine_b = {'branch'}}
+--   }
 
  --theme
  vim.cmd('hi! Normal ctermbg=NONE guibg=NONE')

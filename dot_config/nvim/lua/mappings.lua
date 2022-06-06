@@ -9,6 +9,17 @@ vimp.nnoremap('<Leader>l',':BufferNext<CR>')
 vimp.nnoremap('<Leader>h',':BufferPrevious<CR>')
 vim.cmd("nmap <leader>s <Plug>(easymotion-overwin-f)")
 
+-- load refactoring Telescope extension
+require("telescope").load_extension("refactoring")
+
+-- remap to open the Telescope refactoring menu in visual mode
+vim.api.nvim_set_keymap(
+	"v",
+	"<leader>rr",
+	"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+	{ noremap = true }
+)
+
 local wk = require("which-key")
 wk.register({
   f = {
@@ -16,6 +27,7 @@ wk.register({
     f = { "<cmd>Telescope find_files<cr>", "Find File" },
     b = {"<cmd>Telescope buffers<cr>", "Buffers" },
     h = {"<cmd>Telescope help tags<cr>", "Help Tags" },
+    g = {"<cmd>Telescope live_grep<cr>", "Help Tags" },
     t = {"<cmd>Telescope treesitter<cr>", "Treesitter" },
     e = {"<cmd>Telescope file_browser<cr>", "Telescope File Browser" },
   },
@@ -44,12 +56,13 @@ wk.register({
     },
   g = {
     name = "lsp",
-    n = {"<cmd>TSLspOrganize<cr>", "Organize" },
-    i = {"<cmd>TSLspRenameFile<cr>", "Rename file" },
-    o = {"<cmd>TSLspImportAll<cr>", "Import All" },
+    n = { "<cmd>TSLspOrganize<cr>", "Organize" },
+    i = { "<cmd>TSLspRenameFile<cr>", "Rename file" },
+    o = { "<cmd>TSLspImportAll<cr>", "Import All" },
     f = { "<cmd>LspFormatting<cr>", "Formatting" },
     d = { "<cmd>LspDef<cr>", "Go to Definitions" },
     y = { "<cmd>LspTypeDef<cr>", "type def" },
+    r = { "<cmd>LspRefs<cr>", "type def" },
     a = { "<cmd>LspCodeAction<cr>", "code action" },
   },
   t = {
@@ -101,7 +114,7 @@ end
 
 M.on_attach = function (client, bufnr)
   vim.cmd("command! LspDef lua vim.lsp.buf.definition()")
-  vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+  vim.cmd("command! LspFormatting lua vim.lsp.buf.format({async = true})")
   vim.cmd("command! LspCodeAction lua vim.lsp.buf.code_action()")
   vim.cmd("command! LspHover lua vim.lsp.buf.hover()")
   vim.cmd("command! LspRename lua vim.lsp.buf.rename()")
