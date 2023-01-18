@@ -44,8 +44,6 @@ source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
 NPM_PACKAGES="${HOME}/.npm-packages"
 
-export PATH="$PATH:$NPM_PACKAGES/bin"
-export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 
 #if [[ -n "$PS1" ]] && [[ -z "$TMUX" ]]; then
   #tmux new-session
@@ -63,3 +61,92 @@ source /opt/google-cloud-sdk/path.zsh.inc
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 autoload -U compinit
 compinit -i
+
+# export PATH="$PATH:$NPM_PACKAGES/bin"
+# export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
+# export PATH=/home/lebit/.pub-cache/bin:$PATH
+# export PATH=/opt/android-sdk/cmdline-tools/latest/bin:$PATH
+# export PATH=/opt/android-sdk/emulator:$PATH
+# export PATH=/opt/android-sdk/platform-tools:$PATH
+# export PATH=/opt/android-sdk/tools/bin:$PATH
+# export PATH=/opt/android-sdk/tools:$PATH
+# export PATH=/opt/flutter/bin:$PATH
+# export PATH=/opt/google-cloud-sdk/bin:$PATH
+# export PATH=/usr/bin/core_perl:$PATH
+# export PATH=/usr/bin/site_perl:$PATH
+# export PATH=/usr/bin/vendor_perl:$PATH
+# export PATH=/usr/lib/jvm/default/bin:$PATH
+# export PATH=/usr/lib/jvm/default/bin:$PATH
+#
+# Installation:
+#
+# Via shell config file  ~/.bashrc  (or ~/.zshrc)
+#
+#   Append the contents to config file
+#   'source' the file in the config file
+#
+# You may also have a directory on your system that is configured
+#    for completion files, such as:
+#
+#    /usr/local/etc/bash_completion.d/
+
+###-begin-flutter-completion-###
+
+if type complete &>/dev/null; then
+  __flutter_completion() {
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$COMP_CWORD" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           flutter completion -- "${COMP_WORDS[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -F __flutter_completion flutter
+elif type compdef &>/dev/null; then
+  __flutter_completion() {
+    si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 flutter completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef __flutter_completion flutter
+elif type compctl &>/dev/null; then
+  __flutter_completion() {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       flutter completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K __flutter_completion flutter
+fi
+
+###-end-flutter-completion-###
+
+## Generated 2022-04-14 14:16:33.912284Z
+## By /opt/flutter/bin/cache/flutter_tools.snapshot
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] 2>/dev/null ))
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
