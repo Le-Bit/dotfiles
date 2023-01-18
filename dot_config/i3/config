@@ -24,7 +24,7 @@ font pango:DejaVu Sans Mono 8
 exec --no-startup-id dex --autostart --environment i3
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id picom --experimental-backends --config ~/.config/picom/picom.conf
-exec --no-startup-id feh --bg-scale ~/Downloads/train-track-background.jpg
+exec --no-startup-id feh --bg-scale --no-xinerama ~/Downloads/train-track-background.jpg
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -45,6 +45,10 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 bindsym XF86MonBrightnessUp exec sudo xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec sudo xbacklight -dec 5
+
+# bindsym XF86AudioPlay exec sudo xbacklight -inc 5
+# bindsym XF86AudioNext exec sudo xbacklight -inc 5
+# bindsym XF86AudioPrev exec sudo xbacklight -inc 5
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
