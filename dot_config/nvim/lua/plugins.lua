@@ -15,8 +15,11 @@ return require('packer').startup(function()
 
   use {
   	'nvim-lualine/lualine.nvim',
-  	requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  	requires = {'nvim-tree/nvim-web-devicons'}
   }
+
+  use 'nvim-tree/nvim-web-devicons'
+  use 'chaoren/vim-wordmotion'
 
 	use { 'romgrk/barbar.nvim', requires = {'kyazdani42/nvim-web-devicons'} }
 	use 'christoomey/vim-tmux-navigator'
@@ -24,6 +27,7 @@ return require('packer').startup(function()
 	use 'glepnir/dashboard-nvim'
 
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
 	use 'nvim-treesitter/playground'
 
 	use 'onsails/lspkind-nvim'
@@ -60,7 +64,7 @@ return require('packer').startup(function()
 		requires = {
 			'nvim-lua/plenary.nvim',
 			'nvim-telescope/telescope.nvim',
-			'kyazdani42/nvim-web-devicons',
+			'nvim-tree/nvim-web-devicons',
 		},
 		config = function () require"octo".setup() end
 	}

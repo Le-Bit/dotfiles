@@ -1,29 +1,55 @@
 local lsp_installer = require("nvim-lsp-installer")
 
 lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  if server.name == "tsserver" then
-    opts.root_dir = function() 
-      local lspconfig = require("lspconfig")
-      lspconfig.tsserver.setup({
-        on_attach = function(client, bufnr)
-          local ts_utils = require("nvim-lsp-ts-utils")
-          ts_utils.setup({
-            eslint_bin = "eslint_d",
-            eslint_enable_diagnostics = true,
-            eslint_enable_code_actions = true,
-            enable_formatting = true,
-            formatter = "prettier",
-          })
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.documentRangeFormattingProvider = false
-          ts_utils.setup_client(client)
-          require('mappings').ts_on_attach(client, bufnr)
-          require('mappings').on_attach(client, bufnr)
-        end,
-      })
-
-    end
-  end
-  server:setup(opts)
+  -- local opts = {}
+  -- server:setup(opts)
+  --
 end)
+
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true, -- fall back to standard LSP definition on failure
+    },
+    server = { -- pass options to lspconfig's setup method
+    init_options = {
+      preferences = {
+        importModuleSpecifierPreference = "relative",
+        importModuleSpecifier = "relative",
+      },
+    },
+    filetypes = {"javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx"},
+    root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+    settings = { documentFormatting = false },
+    initOptions = {
+      preferences = {
+        importModuleSpecifierPreference = "project-relative",
+        importModuleSpecifier = "project-relative",
+      },
+    },
+    handlers = {
+        ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = true,
+            signs = true,
+            underline = true,
+            update_in_insert = false,
+        })
+    },
+    on_attach = function(client, bufnr)
+      local ts_utils = require("nvim-lsp-ts-utils")
+      ts_utils.setup({
+        eslint_bin = "eslint_d",
+        eslint_enable_diagnostics = true,
+        eslint_enable_code_actions = true,
+        enable_formatting = true,
+        formatter = "prettier",
+      })
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
+      ts_utils.setup_client(client)
+      require('mappings').ts_on_attach(client, bufnr)
+      require('mappings').on_attach(client, bufnr)
+    end,
+  },
+})
