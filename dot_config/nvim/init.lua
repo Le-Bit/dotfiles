@@ -1,7 +1,7 @@
-require('mappings')
-require('look')
+require('options')
+require('keymaps')
+require('autocommands')
 require('plugins')
 require('lsp')
-require('config.init')
-require("telescope").load_extension "file_browser"
-require('options')
+require('languages.typescript')
+require('testing')
