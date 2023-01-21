@@ -13,7 +13,7 @@ require("packer").startup(function(use)
 
 	-- theme
 	use("luisiacc/gruvbox-baby")
-use 'folke/tokyonight.nvim'
+	use("folke/tokyonight.nvim")
 	use("ellisonleao/gruvbox.nvim")
 
 	use({
@@ -182,7 +182,7 @@ use 'folke/tokyonight.nvim'
 			require("debug-ap").setup()
 		end,
 	})
-use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
+	use({ "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } })
 
 	use({
 		"windwp/nvim-autopairs",
@@ -194,12 +194,12 @@ use { "mxsdev/nvim-dap-vscode-js", requires = {"mfussenegger/nvim-dap"} }
 	use("stevearc/dressing.nvim")
 
 	use("takac/vim-hardtime")
-use {
-  "microsoft/vscode-js-debug",
-  opt = true,
-  run = "npm install --legacy-peer-deps && npm run compile",
-  tag = 'v1.74.1'
-}
+	use({
+		"microsoft/vscode-js-debug",
+		opt = true,
+		run = "npm install --legacy-peer-deps && npm run compile",
+		tag = "v1.74.1",
+	})
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")

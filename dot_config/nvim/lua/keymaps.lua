@@ -1,35 +1,53 @@
 -- See `:help telescope.builtin`
 
+local whichkey = require("which-key")
 
---custom
-local vimp = require("vimp")
+local no_leader_keymap = {
+	["<C-p>"] = {
+		"<cmd>lua require('telescope.builtin').find_files()<cr>",
+		"find_files",
+	},
+}
 
--- load refactoring Telescope extension
-require("telescope").load_extension("refactoring")
+whichkey.register(no_leader_keymap, {
+	mode = "n",
+	prefix = "",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})
 
-vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
--- remap to open the Telescope refactoring menu in visual mode
-vim.api.nvim_set_keymap(
-	"v",
-	"<leader>rr",
-	"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-	{ noremap = true }
-)
-vimp.vnoremap("J", ":m '>+1<CR>gv=gv")
-vimp.vnoremap("K", ":m '<-2<CR>gv=gv")
-vimp.nnoremap("<C-p>", ":Telescope find_files <CR>")
-vim.keymap.set("n", "<leader>/", function()
-	-- You can pass additional configuration to telescope to change theme, layout, etc.
-	require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-		winblend = 10,
-		previewer = false,
-	}))
-end, { desc = "[/] Fuzzily search in current buffer]" })
--- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+local visual_keymap = {
+	J = {
+		":m '>+1<CR>gv=gv<CR>",
+		"down selection",
+	},
+	K = {
+		":m '<-2<CR>gv=gv<CR>",
+		"down selection",
+	},
+	r = {
+		"<cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+		"refactor code action",
+	},
+}
 
-require("which-key").register({
+whichkey.register(visual_keymap, {
+	mode = "v",
+	prefix = "",
+	buffer = nil,
+	silent = true,
+	noremap = true,
+	nowait = false,
+})
+
+whichkey.register({
+	["/"] = {
+		'<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({ winblend = 10, previewer = false, }))<cr>',
+		"fuzzily search in buffer",
+	},
+	["?"] = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "[?] Find recently opened files" },
 	q = { "lua vim.diagnostic.setloclist()", "Show diagnostics in loclist" },
 	A = { "lua vim.diagnostic.open_float()", "Show diagnostics" },
 	B = { '<cmd>require("telescope.builtin").buffers<cr>', "[ ] Find existing buffers" },
@@ -83,5 +101,11 @@ require("which-key").register({
 			end,
 			"Relative Number",
 		},
+	},
+	["]"] = {
+		d = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "previous diagnostic" },
+	},
+	["["] = {
+		d = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "next diagnostic" },
 	},
 }, { prefix = "<leader>" })

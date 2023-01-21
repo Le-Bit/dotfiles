@@ -7,13 +7,6 @@ M.on_attach = function(_, bufnr)
 	--
 	-- In this case, we create a function that lets us more easily define mappings specific
 	-- for LSP related items. It sets the mode, buffer and description for us each time.
-	local nmap = function(keys, func, desc)
-		if desc then
-			desc = "LSP: " .. desc
-		end
-
-		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
-	end
 	local whichkey = require("which-key")
 	local keymap_leader = {
 		r = { n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[R]e[n]ame" } },
@@ -45,6 +38,10 @@ M.on_attach = function(_, bufnr)
 	}
 
 	local keymap_noprefix = {
+		["<C-k>"] = {
+			"<cmd>lua vim.lsp.buf.signature_help()<cr>",
+			"Signature Documentation",
+		},
 		g = {
 			d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "[G]oto [D]efinition" },
 			r = { '<cmd>lua require("telescope.builtin").lsp_references()<cr>', "[G]oto [R]eferences" },
@@ -71,9 +68,6 @@ M.on_attach = function(_, bufnr)
 		noremap = true,
 		nowait = false,
 	})
-
-	-- See `:help K` for why this keymap
-	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
 	-- Create a command `:Format` local to the LSP buffer
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
