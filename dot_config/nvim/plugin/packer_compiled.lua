@@ -148,6 +148,11 @@ _G.packer_plugins = {
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["dressing.nvim"] = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/dressing.nvim",
+    url = "https://github.com/stevearc/dressing.nvim"
+  },
   ["fidget.nvim"] = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/fidget.nvim",
@@ -218,6 +223,11 @@ _G.packer_plugins = {
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/neotest-jest",
     url = "https://github.com/haydenmeade/neotest-jest"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-autopairs"] = {
     config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
     loaded = true,
@@ -230,7 +240,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-dap"] = {
-    after = { "telescope-dap.nvim", "nvim-dap-virtual-text", "nvim-dap-ui" },
+    after = { "nvim-dap-virtual-text", "nvim-dap-ui", "telescope-dap.nvim" },
     config = { "\27LJ\2\nP\0\0\3\0\4\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\0016\0\0\0'\2\3\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\rdebug-ap\nsetup\ndapui\frequire\0" },
     keys = { { "", "<leader>d" } },
     loaded = false,
@@ -258,10 +268,10 @@ _G.packer_plugins = {
     path = "/home/lebit/.local/share/nvim/site/pack/packer/opt/nvim-dap-virtual-text",
     url = "https://github.com/theHamsta/nvim-dap-virtual-text"
   },
-  ["nvim-lsp-ts-utils"] = {
+  ["nvim-dap-vscode-js"] = {
     loaded = true,
-    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
-    url = "https://github.com/jose-elias-alvarez/nvim-lsp-ts-utils"
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/nvim-dap-vscode-js",
+    url = "https://github.com/mxsdev/nvim-dap-vscode-js"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -348,6 +358,11 @@ _G.packer_plugins = {
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   ["typescript.nvim"] = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/typescript.nvim",
@@ -357,6 +372,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-hardtime"] = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/vim-hardtime",
+    url = "https://github.com/takac/vim-hardtime"
   },
   ["vim-rhubarb"] = {
     loaded = true,
@@ -377,6 +397,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/vimpeccable",
     url = "https://github.com/svermeulen/vimpeccable"
+  },
+  ["vscode-js-debug"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/opt/vscode-js-debug",
+    url = "https://github.com/microsoft/vscode-js-debug"
   },
   ["which-key.nvim"] = {
     config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0" },
@@ -419,14 +445,14 @@ end
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
 time([[Config for which-key.nvim]], false)
--- Config for: octo.nvim
-time([[Config for octo.nvim]], true)
-try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
-time([[Config for octo.nvim]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
+-- Config for: octo.nvim
+time([[Config for octo.nvim]], true)
+try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
+time([[Config for octo.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)

@@ -1,8 +1,8 @@
 require("neotest").setup({
-   quickfix = {
-     enabled = true,
-     open = true
-   },
+  quickfix = {
+    enabled = false,
+    open = false
+  },
   adapters = {
     require('neotest-jest')({
       jestCommand = "npm test --",

@@ -7,11 +7,13 @@
 -- ---------------------------------------------------------------------------
 -- LSP settings.
 
-
 -- Setup neovim lua configuration
-require('neodev').setup()
+require("neodev").setup()
 -- Turn on lsp status information
-require('fidget').setup()
+require("fidget").setup()
 -- Mason
-require('lsp.mason')
-require('lsp.cmp')
+require("lsp.mason")
+-- Cmp
+require("lsp.cmp")
+-- null-ls
+require("lsp.null-ls")
