@@ -55,7 +55,7 @@ require("typescript").setup({
 			vim.cmd("command! LspDiagNext lua vim.diagnostic.goto_next()")
 			vim.cmd("command! LspDiagLine lua vim.diagnostic.open_float()")
 			vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
-			keymaps = {
+			local keymaps = {
 				g = {
 				n = {'<cmd>:TypescriptOrganizeImports<cr>','organiz imports'},
 				i = {'<cmd>:TypescriptRenameFile<cr>','rename file'},

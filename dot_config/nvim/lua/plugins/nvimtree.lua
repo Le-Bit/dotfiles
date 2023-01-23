@@ -30,6 +30,11 @@ require("nvim-tree").setup({
 		update_root = false,
 		ignore_list = {},
 	},
+	modified = {
+		enable = true,
+		show_on_dirs = true,
+		show_on_open_dirs = true,
+	},
 })
 
 local nvim_tree_events = require("nvim-tree.events")
