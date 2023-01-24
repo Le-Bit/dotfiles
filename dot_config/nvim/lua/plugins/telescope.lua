@@ -1,15 +1,15 @@
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require("telescope").setup({
-	defaults = {
-		mappings = {
-			i = {
-				["<C-u>"] = false,
-				["<C-d>"] = false,
-        ["<C-h>"] = "which_key"
-			},
-		},
-	},
+  defaults = {
+mappings = {
+i = {
+["<C-u>"] = false,
+["<C-d>"] = false,
+["<C-h>"] = "which_key",
+},
+},
+},
 })
 
 require("telescope").load_extension("file_browser")

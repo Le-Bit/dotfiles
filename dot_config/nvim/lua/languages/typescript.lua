@@ -57,13 +57,13 @@ require("typescript").setup({
 			vim.cmd("command! LspSignatureHelp lua vim.lsp.buf.signature_help()")
 			local keymaps = {
 				g = {
-				n = {'<cmd>:TypescriptOrganizeImports<cr>','organiz imports'},
-				i = {'<cmd>:TypescriptRenameFile<cr>','rename file'},
-				o = {'<cmd>:TypescriptAddMissingImports<cr>', 'add missing imports'},
-				f = {'<cmd>:EslintFixAll<cr>', 'eslint fix all'},
-				d = {'<cmd>LspDef<cr>', 'lsp definition'},
+					n = { "<cmd>:TypescriptOrganizeImports<cr>", "organiz imports" },
+					i = { "<cmd>:TypescriptRenameFile<cr>", "rename file" },
+					o = { "<cmd>:TypescriptAddMissingImports<cr>", "add missing imports" },
+					f = { "<cmd>:EslintFixAll<cr>", "eslint fix all" },
+					d = { "<cmd>LspDef<cr>", "lsp definition" },
 				},
-				a = {'<cmd><cr>', 'lsp diag line'}
+				a = { "<cmd><cr>", "lsp diag line" },
 			}
 			whichkey.register(keymaps, {
 				mode = "n",
@@ -75,11 +75,10 @@ require("typescript").setup({
 			})
 			local keymaps_no_leader = {
 				g = {
-					y = {'<cmd>:LspTypeDef<cr>','organiz imports'},
-					a = {'<cmd>:LspCodeAction<cr>','organiz imports'},
+					y = { "<cmd>:LspTypeDef<cr>", "organiz imports" },
+					a = { "<cmd>:LspCodeAction<cr>", "organiz imports" },
 				},
-				K = {':LspHover<CR>', 'lsp hover'},
-
+				K = { ":LspHover<CR>", "lsp hover" },
 			}
 			whichkey.register(keymaps_no_leader, {
 				mode = "n",

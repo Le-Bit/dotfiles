@@ -2,7 +2,7 @@ local M = {}
 
 local function configure()
 	require("dap-vscode-js").setup({
-		adapters = {  "pwa-node" },
+		adapters = { "pwa-node" },
 	})
 
 	for _, language in ipairs({ "typescript", "javascript" }) do
