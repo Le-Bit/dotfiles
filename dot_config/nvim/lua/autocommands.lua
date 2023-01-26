@@ -16,3 +16,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = highlight_group,
 	pattern = "*",
 })
+
+	vim.api.nvim_create_user_command("CloseAll", function(_)
+		vim.cmd(':%bd|e#')
+	end, { desc = "Format current buffer with LSP" })

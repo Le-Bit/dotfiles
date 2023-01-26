@@ -71,3 +71,7 @@ vim.o.wildmenu = true
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- vim.opt.foldlevel = 1
 vim.opt.foldmethod = "expr"
+vim.opt.relativenumber = true
+vim.g.hardtime_default_on = 1
+vim.g.hardtime_maxcount = 3
+vim.g.hardtime_motion_with_count_resets = 1

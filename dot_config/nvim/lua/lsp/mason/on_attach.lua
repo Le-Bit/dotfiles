@@ -9,10 +9,11 @@ M.on_attach = function(_, bufnr)
 	-- for LSP related items. It sets the mode, buffer and description for us each time.
 	local whichkey = require("which-key")
 	local keymap_leader = {
-		r = { n = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[R]e[n]ame" } },
+		rn = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[R]e[n]ame" },
 		c = { a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[C]ode [A]ction" } },
 		D = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Type [D]efinition" },
-		a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code actions" },
+		A = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Show diagnostics in loclist" },
+		a = { "<cmd>lua vim.diagnostic.open_float()<cr>", "Show diagnostics" },
 		w = {
 			s = { "<cmd>lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>', '[W]orkspace [S]ymbols" },
 			a = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", "[W]orkspace [A]dd Folder" },
@@ -29,12 +30,12 @@ M.on_attach = function(_, bufnr)
 			r = { "<cmd>lua vim.lsp.buf.references()<cr>", "refs" },
 			a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "code action" },
 		},
-		-- d = {
-		-- 	s = {
-		-- 		'require("telescope.builtin").lsp_document_symbols',
-		-- 		"[D]ocument [S]ymbols",
-		-- 	},
-		-- },
+		d = {
+			s = {
+				'require("telescope.builtin").lsp_document_symbols',
+				"[D]ocument [S]ymbols",
+			},
+		},
 	}
 
 	local keymap_noprefix = {
@@ -48,7 +49,7 @@ M.on_attach = function(_, bufnr)
 			I = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "[G]oto [I]mplementation" },
 			D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "[G]oto [D]eclaration" },
 		},
-		K = { "<cmd>lua vim.lsp.buf.hover<cr>", "Hover Documentation" },
+		K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover Documentation" },
 	}
 
 	whichkey.register(keymap_leader, {

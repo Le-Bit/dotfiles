@@ -159,7 +159,7 @@ require("packer").startup(function(use)
 	})
 
 	--typescript related plugins
-	use("jose-elias-alvarez/typescript.nvim")
+	use({ "Le-Bit/typescript.nvim", branch = "feat/rename-folder" })
 
 	-- file management
 	use("stevearc/oil.nvim")
@@ -200,6 +200,9 @@ require("packer").startup(function(use)
 		run = "npm install --legacy-peer-deps && npm run compile",
 		tag = "v1.74.1",
 	})
+	use("onsails/lspkind.nvim")
+	use("rcarriga/nvim-notify")
+	use("karb94/neoscroll.nvim")
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")

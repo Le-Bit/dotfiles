@@ -14,6 +14,6 @@ require("fidget").setup()
 -- Mason
 require("lsp.mason")
 -- Cmp
-require("lsp.cmp")
+require("cmp_config")
 -- null-ls
 require("lsp.null-ls")

@@ -7,6 +7,9 @@ local no_leader_keymap = {
 		"<cmd>lua require('telescope.builtin').find_files()<cr>",
 		"find_files",
 	},
+	["<C-CR>"] = {"<cmd>FloatermToggle<cr>", "float term toggle"},
+	["<C-i>"] = {"<cmd><Plug>(TaboutMulti)<cr>"},
+	["<C-o>"] = {"<cmd><Plug>(TaboutBackMulti)<cr>"}
 }
 
 whichkey.register(no_leader_keymap, {
@@ -48,8 +51,6 @@ whichkey.register({
 		"fuzzily search in buffer",
 	},
 	["?"] = { "<cmd>lua require('telescope.builtin').oldfiles()<cr>", "[?] Find recently opened files" },
-	q = { "lua vim.diagnostic.setloclist()", "Show diagnostics in loclist" },
-	A = { "lua vim.diagnostic.open_float()", "Show diagnostics" },
 	B = { '<cmd>require("telescope.builtin").buffers<cr>', "[ ] Find existing buffers" },
 	e = { "<cmd>NvimTreeToggle<cr>", "Tree" },
 	E = { "<cmd>Oil<cr>", "Tree" },
