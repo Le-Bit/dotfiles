@@ -21,7 +21,7 @@ require("packer").startup(function(use)
 		requires = {
 			"nvim-tree/nvim-web-devicons", -- optional, for file icons
 		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+		tag = "nightly",              -- optional, updated every week. (see issue #1193)
 	})
 
 	-- test
@@ -35,7 +35,8 @@ require("packer").startup(function(use)
 		},
 	})
 
-	use({ -- Autocompletion
+	use({
+	     -- Autocompletion
 		"hrsh7th/nvim-cmp",
 		requires = {
 			"hrsh7th/cmp-nvim-lsp",
@@ -49,19 +50,22 @@ require("packer").startup(function(use)
 		},
 	})
 
-	use({ -- Highlight, edit, and navigate code
+	use({
+	     -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 		end,
 	})
 
-	use({ -- Additional text objects via treesitter
+	use({
+	     -- Additional text objects via treesitter
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	})
 
-	use({ -- LSP Configuration & Plugins
+	use({
+	     -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		requires = {
 			-- Automatically install LSPs to stdpath for neovim
@@ -96,11 +100,11 @@ require("packer").startup(function(use)
 		requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
 	})
 
-	use("navarasu/onedark.nvim") -- Theme inspired by Atom
-	use("nvim-lualine/lualine.nvim") -- Fancier statusline
+	use("navarasu/onedark.nvim")              -- Theme inspired by Atom
+	use("nvim-lualine/lualine.nvim")          -- Fancier statusline
 	use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
-	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
-	use("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
+	use("numToStr/Comment.nvim")              -- "gc" to comment visual regions/lines
+	use("tpope/vim-sleuth")                   -- Detect tabstop and shiftwidth automatically
 
 	-- Fuzzy Finder (files, lsp, etc)
 	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = { "nvim-lua/plenary.nvim" } })
@@ -166,6 +170,27 @@ require("packer").startup(function(use)
 
 	use("jose-elias-alvarez/null-ls.nvim")
 
+	use {
+		"pmizio/typescript-tools.nvim",
+		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			require("typescript-tools").setup({
+				settings = {
+    -- spawn additional tsserver instance to calculate diagnostics on it
+    separate_diagnostic_server = true,
+    -- "change"|"insert_leave" determine when the client asks the server about diagnostic
+    publish_diagnostic_on = "insert_leave",
+    -- specify a list of plugins to load by tsserver, e.g., for support `styled-components`
+    -- (see 💅 `styled-components` support section)
+    tsserver_plugins = {},
+    -- described below
+    tsserver_format_options = {},
+    tsserver_file_preferences = {},
+  },
+			})
+		end,
+	}
+
 	--debugging
 	use({
 		"mfussenegger/nvim-dap",
@@ -203,6 +228,30 @@ require("packer").startup(function(use)
 	use("onsails/lspkind.nvim")
 	use("rcarriga/nvim-notify")
 	use("karb94/neoscroll.nvim")
+	use("metakirby5/codi.vim")
+	use("folke/trouble.nvim")
+	use("nvim-treesitter/playground")
+	use({
+		"nyngwang/NeoTerm.lua",
+		config = function()
+			require("neo-term").setup({
+				-- split_on_top = true,
+				-- split_size = 0.5,
+				exclude_buftypes = { "terminal" }, -- these two options will affect `NeoTermOpen`
+				exclude_filetypes = { "neo-tree", "dashboard" },
+			})
+			vim.keymap.set("n", "<C-CR>", function()
+				if vim.bo.buftype == "terminal" then
+					vim.cmd("NeoTermClose")
+				else
+					vim.cmd("NeoTermOpen")
+				end
+			end, { noremap = true, silent = true, nowait = true })
+			vim.keymap.set("t", "<C-CR>", function()
+				vim.cmd("NeoTermEnterNormal")
+			end, { noremap = true, silent = true, nowait = true })
+		end,
+	})
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, "custom.plugins")

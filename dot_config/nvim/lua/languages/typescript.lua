@@ -1,9 +1,3 @@
-local buf_map = function(bufnr, mode, lhs, rhs, opts)
-	vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
-		silent = true,
-	})
-end
-
 require("typescript").setup({
 	disable_commands = false, -- prevent the plugin from creating Vim commands
 	debug = false, -- enable debug logging for commands
@@ -41,7 +35,7 @@ require("typescript").setup({
 				update_in_insert = false,
 			}),
 		},
-		on_attach = function(client, bufnr)
+		on_attach = function(client, _bufnr)
 			local whichkey = require("which-key")
 			local keymaps = {
 				g = {

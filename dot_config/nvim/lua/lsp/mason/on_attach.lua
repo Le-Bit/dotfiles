@@ -7,7 +7,20 @@ M.on_attach = function(_, bufnr)
 	--
 	-- In this case, we create a function that lets us more easily define mappings specific
 	-- for LSP related items. It sets the mode, buffer and description for us each time.
+	--
 	local whichkey = require("which-key")
+	local visual_keymaps = {
+		c = { a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[C]ode [A]ction" } },
+	}
+
+	whichkey.register(visual_keymaps, {
+		mode = "v",
+		prefix = "",
+		buffer = nil,
+		silent = true,
+		noremap = true,
+		nowait = false,
+	})
 	local keymap_leader = {
 		rn = { "<cmd>lua vim.lsp.buf.rename()<cr>", "[R]e[n]ame" },
 		c = { a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "[C]ode [A]ction" } },

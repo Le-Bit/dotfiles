@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/lebit/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/lebit/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/lebit/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/lebit/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/lebit/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/lebit/.cache/nvim/packer_hererocks/2.1.1697887905/share/lua/5.1/?.lua;/home/lebit/.cache/nvim/packer_hererocks/2.1.1697887905/share/lua/5.1/?/init.lua;/home/lebit/.cache/nvim/packer_hererocks/2.1.1697887905/lib/luarocks/rocks-5.1/?.lua;/home/lebit/.cache/nvim/packer_hererocks/2.1.1697887905/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/lebit/.cache/nvim/packer_hererocks/2.1.1697887905/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -89,6 +89,12 @@ _G.packer_plugins = {
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["NeoTerm.lua"] = {
+    config = { "\27LJ\2\nx\0\0\3\0\a\0\0156\0\0\0009\0\1\0009\0\2\0\a\0\3\0X\0\5€6\0\0\0009\0\4\0'\2\5\0B\0\2\1X\0\4€6\0\0\0009\0\4\0'\2\6\0B\0\2\1K\0\1\0\16NeoTermOpen\17NeoTermClose\bcmd\rterminal\fbuftype\abo\bvim6\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\23NeoTermEnterNormal\bcmd\bvim¨\2\1\0\6\0\18\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\0016\0\b\0009\0\t\0009\0\n\0'\2\v\0'\3\f\0003\4\r\0005\5\14\0B\0\5\0016\0\b\0009\0\t\0009\0\n\0'\2\15\0'\3\f\0003\4\16\0005\5\17\0B\0\5\1K\0\1\0\1\0\3\fnoremap\2\vsilent\2\vnowait\2\0\6t\1\0\3\fnoremap\2\vsilent\2\vnowait\2\0\v<C-CR>\6n\bset\vkeymap\bvim\22exclude_filetypes\1\3\0\0\rneo-tree\14dashboard\21exclude_buftypes\1\0\0\1\2\0\0\rterminal\nsetup\rneo-term\frequire\0" },
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/NeoTerm.lua",
+    url = "https://github.com/nyngwang/NeoTerm.lua"
+  },
   ["barbar.nvim"] = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/barbar.nvim",
@@ -123,6 +129,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["codi.vim"] = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/codi.vim",
+    url = "https://github.com/metakirby5/codi.vim"
   },
   ["copilot-cmp"] = {
     config = { "\27LJ\2\n9\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\16copilot_cmp\frequire\0" },
@@ -250,7 +261,7 @@ _G.packer_plugins = {
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-dap"] = {
-    after = { "telescope-dap.nvim", "nvim-dap-virtual-text", "nvim-dap-ui" },
+    after = { "telescope-dap.nvim", "nvim-dap-ui", "nvim-dap-virtual-text" },
     config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rdebug-ap\frequire\0" },
     keys = { { "", "<leader>d" } },
     loaded = false,
@@ -336,6 +347,11 @@ _G.packer_plugins = {
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  playground = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/playground",
+    url = "https://github.com/nvim-treesitter/playground"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/plenary.nvim",
@@ -377,6 +393,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lebit/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
+  },
+  ["typescript-tools.nvim"] = {
+    config = { "\27LJ\2\nó\1\0\0\5\0\t\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\a\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0034\4\0\0=\4\6\3=\3\b\2B\0\2\1K\0\1\0\rsettings\1\0\0\30tsserver_file_preferences\28tsserver_format_options\21tsserver_plugins\1\0\2\26publish_diagnostic_on\17insert_leave\31separate_diagnostic_server\2\nsetup\21typescript-tools\frequire\0" },
+    loaded = true,
+    path = "/home/lebit/.local/share/nvim/site/pack/packer/start/typescript-tools.nvim",
+    url = "https://github.com/pmizio/typescript-tools.nvim"
   },
   ["typescript.nvim"] = {
     loaded = true,
@@ -456,18 +483,26 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
--- Config for: nvim-autopairs
-time([[Config for nvim-autopairs]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
-time([[Config for nvim-autopairs]], false)
--- Config for: which-key.nvim
-time([[Config for which-key.nvim]], true)
-try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
-time([[Config for which-key.nvim]], false)
+-- Config for: typescript-tools.nvim
+time([[Config for typescript-tools.nvim]], true)
+try_loadstring("\27LJ\2\nó\1\0\0\5\0\t\0\0156\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\a\0005\3\3\0004\4\0\0=\4\4\0034\4\0\0=\4\5\0034\4\0\0=\4\6\3=\3\b\2B\0\2\1K\0\1\0\rsettings\1\0\0\30tsserver_file_preferences\28tsserver_format_options\21tsserver_plugins\1\0\2\26publish_diagnostic_on\17insert_leave\31separate_diagnostic_server\2\nsetup\21typescript-tools\frequire\0", "config", "typescript-tools.nvim")
+time([[Config for typescript-tools.nvim]], false)
 -- Config for: octo.nvim
 time([[Config for octo.nvim]], true)
 try_loadstring("\27LJ\2\n2\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\tocto\frequire\0", "config", "octo.nvim")
 time([[Config for octo.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: NeoTerm.lua
+time([[Config for NeoTerm.lua]], true)
+try_loadstring("\27LJ\2\nx\0\0\3\0\a\0\0156\0\0\0009\0\1\0009\0\2\0\a\0\3\0X\0\5€6\0\0\0009\0\4\0'\2\5\0B\0\2\1X\0\4€6\0\0\0009\0\4\0'\2\6\0B\0\2\1K\0\1\0\16NeoTermOpen\17NeoTermClose\bcmd\rterminal\fbuftype\abo\bvim6\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\23NeoTermEnterNormal\bcmd\bvim¨\2\1\0\6\0\18\0\0276\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\0016\0\b\0009\0\t\0009\0\n\0'\2\v\0'\3\f\0003\4\r\0005\5\14\0B\0\5\0016\0\b\0009\0\t\0009\0\n\0'\2\15\0'\3\f\0003\4\16\0005\5\17\0B\0\5\1K\0\1\0\1\0\3\fnoremap\2\vsilent\2\vnowait\2\0\6t\1\0\3\fnoremap\2\vsilent\2\vnowait\2\0\v<C-CR>\6n\bset\vkeymap\bvim\22exclude_filetypes\1\3\0\0\rneo-tree\14dashboard\21exclude_buftypes\1\0\0\1\2\0\0\rterminal\nsetup\rneo-term\frequire\0", "config", "NeoTerm.lua")
+time([[Config for NeoTerm.lua]], false)
+-- Config for: which-key.nvim
+time([[Config for which-key.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14which-key\frequire\0", "config", "which-key.nvim")
+time([[Config for which-key.nvim]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)

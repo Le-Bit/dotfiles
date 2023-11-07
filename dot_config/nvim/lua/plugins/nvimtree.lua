@@ -48,6 +48,17 @@ nvim_tree_events.subscribe("TreeOpen", function()
 	bufferline_api.set_offset(get_tree_size())
 end)
 
+nvim_tree_events.subscribe("FolderOpened", function()
+	local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+	local max = 0
+	for _, line in ipairs(lines) do
+		if max < #line then
+			max = #line
+		end
+	end
+	-- get longest line length
+	bufferline_api.set_offset(max)
+end)
 nvim_tree_events.subscribe("Resize", function()
 	bufferline_api.set_offset(get_tree_size())
 end)

@@ -7,9 +7,14 @@ local no_leader_keymap = {
 		"<cmd>lua require('telescope.builtin').find_files()<cr>",
 		"find_files",
 	},
-	["<C-CR>"] = {"<cmd>FloatermToggle<cr>", "float term toggle"},
 	["<C-i>"] = {"<cmd><Plug>(TaboutMulti)<cr>"},
-	["<C-o>"] = {"<cmd><Plug>(TaboutBackMulti)<cr>"}
+	["<C-o>"] = {"<cmd><Plug>(TaboutBackMulti)<cr>"},
+	["]"] = {
+		d = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "previous diagnostic" },
+	},
+	["["] = {
+		d = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "next diagnostic" },
+	},
 }
 
 whichkey.register(no_leader_keymap, {
@@ -56,6 +61,7 @@ whichkey.register({
 	E = { "<cmd>Oil<cr>", "Tree" },
 	h = { "<cmd>BufferPrevious<cr>", "Previous buffer" },
 	l = { "<cmd>BufferNext<CR>", "Next Buffer" },
+	T = { "<cmd>TroubleToggle<CR>"},
 	f = {
 		name = "file",
 		f = { "<cmd>Telescope find_files<cr>", "Find File" },
@@ -88,11 +94,11 @@ whichkey.register({
 	},
 	s = {
 		name = "telescope",
-		f = { '<cmd>require("telescope.builtin").find_files<cr>', "[S]earch [F]iles" },
-		h = { '<cmd>require("telescope.builtin").help_tags<cr>', "[S]earch [H]elp" },
-		w = { '<cmd>require("telescope.builtin").grep_string<cr>', "[S]earch current [W]ord" },
-		g = { '<cmd>require("telescope.builtin").live_grep<cr>', "[S]earch by [G]rep" },
-		d = { '<cmd>require("telescope.builtin").diagnostics<cr>', "[S]earch [D]iagnostics" },
+		f = { '<cmd>lua require("telescope.builtin").find_files()<CR>', "[S]earch [F]iles" },
+		h = { '<cmd>lua require("telescope.builtin").help_tags()<CR>', "[S]earch [H]elp" },
+		w = { '<cmd>lua require("telescope.builtin").grep_string()<CR>', "[S]earch current [W]ord" },
+		g = { '<cmd>lua require("telescope.builtin").live_grep()<CR>', "[S]earch by [G]rep" },
+		d = { '<cmd>lua require("telescope.builtin").diagnostics()<CR>', "[S]earch [D]iagnostics" },
 	},
 	v = {
 		name = "toggle",
@@ -102,11 +108,5 @@ whichkey.register({
 			end,
 			"Relative Number",
 		},
-	},
-	["]"] = {
-		d = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "previous diagnostic" },
-	},
-	["["] = {
-		d = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "next diagnostic" },
 	},
 }, { prefix = "<leader>" })

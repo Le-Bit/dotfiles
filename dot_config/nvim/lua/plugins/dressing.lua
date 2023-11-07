@@ -7,13 +7,13 @@ require("dressing").setup({
 		default_prompt = "Input:",
 
 		-- Can be 'left', 'right', or 'center'
-		prompt_align = "left",
+		prompt_align = "right",
 
 		-- When true, <Esc> will close the modal
-		insert_only = true,
+		insert_only = false,
 
 		-- When true, input will start in insert mode.
-		start_in_insert = true,
+		start_in_insert = false,
 
 		-- These are passed to nvim_open_win
 		anchor = "SW",
